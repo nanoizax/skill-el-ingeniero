@@ -1,0 +1,950 @@
+{
+  "version": 1,
+  "nombre": "Barbería Don Mario",
+  "perfil": "agenda",
+  "creado": "2026-11-24",
+  "etapa": "salida",
+  "banderas": {
+    "pagos": true,
+    "datos-personales": true,
+    "cuentas": true,
+    "multiusuario": true,
+    "whatsapp": false,
+    "movil": false,
+    "base-de-datos": true,
+    "archivos": false,
+    "ia": false
+  },
+  "comandos": {
+    "pruebas": "python -m pytest -q",
+    "lint": "python -m ruff check .",
+    "build": "python -m compileall -q app",
+    "auditoria": "python -m pip_audit -r requirements.txt"
+  },
+  "eleccion": {
+    "opcion": "B",
+    "porque": "El sobrino que lo mantendrá sabe Python",
+    "fecha": "2026-11-24"
+  },
+  "aprobacion": {
+    "evidencia": "Sí, me parece bien, así sale más barato",
+    "fecha": "2026-11-24"
+  },
+  "etapas": [
+    {
+      "id": 0,
+      "nombre": "Esqueleto",
+      "estado": "cerrada",
+      "evidencia": "Esqueleto con estructura por módulos, pytest con la prueba de salud en verde, ruff sin errores, .env.example, README y CI",
+      "fecha": "2026-11-24",
+      "hecho_cuando": [
+        "La prueba de salud responde ok y el linter no encuentra errores"
+      ],
+      "verificar": [
+        "python -m pytest -q tests/test_salud.py",
+        "python -m ruff check ."
+      ],
+      "ultima_verificacion": {
+        "ok": true,
+        "fecha": "2026-11-24",
+        "resultados": [
+          {
+            "comando": "python -m pytest -q tests/test_salud.py",
+            "ok": true,
+            "detalle": "\"python -m pytest -q tests/test_salud.py\" terminó sin errores."
+          },
+          {
+            "comando": "python -m ruff check .",
+            "ok": true,
+            "detalle": "\"python -m ruff check .\" terminó sin errores."
+          }
+        ]
+      }
+    },
+    {
+      "id": 1,
+      "nombre": "Agendar una cita",
+      "estado": "cerrada",
+      "evidencia": "Agendar una cita: 18 pruebas pasan en total, con hora ocupada, hora pasada, fuera de horario y los límites de cierre y de cita contigua",
+      "fecha": "2026-11-24",
+      "hecho_cuando": [
+        "El cliente recibe la cita confirmada con su hora y su barbero",
+        "El cliente recibe un rechazo si la hora ya está ocupada, pasó o cae fuera del horario"
+      ],
+      "verificar": [
+        "python -m pytest -q tests/test_agendar_cita.py tests/test_api_citas.py"
+      ],
+      "ultima_verificacion": {
+        "ok": true,
+        "fecha": "2026-11-24",
+        "resultados": [
+          {
+            "comando": "python -m pytest -q tests/test_agendar_cita.py tests/test_api_citas.py",
+            "ok": true,
+            "detalle": "\"python -m pytest -q tests/test_agendar_cita.py tests/test_api_citas.py\" terminó sin errores."
+          }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "nombre": "Cuentas y roles",
+      "estado": "cerrada",
+      "evidencia": "Cuentas y roles: 82 pruebas pasan (hash scrypt, bloqueo al sexto intento, token alterado y vencido, roles); verificado además con el servidor real: login, 401 sin sesión y 403 por rol",
+      "fecha": "2026-11-24",
+      "hecho_cuando": [
+        "Cada rol ve y cambia solo lo que le corresponde",
+        "La contraseña se guarda con hash y nunca aparece en una respuesta"
+      ],
+      "verificar": [
+        "python -m pytest -q tests/test_cuentas_casos_de_uso.py tests/test_cuentas_seguridad.py tests/test_api_cuentas.py"
+      ],
+      "ultima_verificacion": {
+        "ok": true,
+        "fecha": "2026-11-24",
+        "resultados": [
+          {
+            "comando": "python -m pytest -q tests/test_cuentas_casos_de_uso.py tests/test_cuentas_seguridad.py tests/test_api_cuentas.py",
+            "ok": true,
+            "detalle": "\"python -m pytest -q tests/test_cuentas_casos_de_uso.py tests/test_cuentas_seguridad.py tests/test_api_cuentas.py\" terminó sin errores."
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "nombre": "Cancelar y mover una cita",
+      "estado": "cerrada",
+      "evidencia": "Cancelar, mover y atender: 60 pruebas pasan, incluida la de un cliente que intenta cancelar la cita de otro y la que comprueba que cancelar libera la hora",
+      "fecha": "2026-11-24",
+      "hecho_cuando": [
+        "La persona cancela su cita y la hora queda libre",
+        "Nadie puede cancelar ni mover la cita de otra persona"
+      ],
+      "verificar": [
+        "python -m pytest -q tests/test_gestion_de_citas.py tests/test_carreras_de_estado.py"
+      ],
+      "ultima_verificacion": {
+        "ok": true,
+        "fecha": "2026-11-24",
+        "resultados": [
+          {
+            "comando": "python -m pytest -q tests/test_gestion_de_citas.py tests/test_carreras_de_estado.py",
+            "ok": true,
+            "detalle": "\"python -m pytest -q tests/test_gestion_de_citas.py tests/test_carreras_de_estado.py\" terminó sin errores."
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "nombre": "Agenda del día del barbero",
+      "estado": "cerrada",
+      "evidencia": "Agenda del día: 76 pruebas pasan, con orden por hora, aislamiento entre barberos, mis citas del cliente y el borde de las 23:30 de Santiago",
+      "fecha": "2026-11-24",
+      "hecho_cuando": [
+        "Cada barbero ve su agenda del día ordenada por hora y sin las citas de otro"
+      ],
+      "verificar": [
+        "python -m pytest -q tests/test_agenda.py"
+      ],
+      "ultima_verificacion": {
+        "ok": true,
+        "fecha": "2026-11-24",
+        "resultados": [
+          {
+            "comando": "python -m pytest -q tests/test_agenda.py",
+            "ok": true,
+            "detalle": "\"python -m pytest -q tests/test_agenda.py\" terminó sin errores."
+          }
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "nombre": "Registrar cobros",
+      "estado": "cerrada",
+      "evidencia": "Cobros: 76 pruebas pasan, con doble cobro rechazado, cita no atendida rechazada y montos cero, negativos y decimales rechazados",
+      "fecha": "2026-11-24",
+      "hecho_cuando": [
+        "El cobro de una cita atendida queda registrado con su monto y su medio de pago",
+        "No se puede cobrar dos veces la misma cita"
+      ],
+      "verificar": [
+        "python -m pytest -q tests/test_cobros.py"
+      ],
+      "ultima_verificacion": {
+        "ok": true,
+        "fecha": "2026-11-24",
+        "resultados": [
+          {
+            "comando": "python -m pytest -q tests/test_cobros.py",
+            "ok": true,
+            "detalle": "\"python -m pytest -q tests/test_cobros.py\" terminó sin errores."
+          }
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "nombre": "Cierre de caja del día",
+      "estado": "cerrada",
+      "evidencia": "Cierre de caja: 32 pruebas pasan; en el servidor real el cierre de un cobro de 12000 pesos dio total 12000 y 403 para un cliente",
+      "fecha": "2026-11-24",
+      "hecho_cuando": [
+        "El cierre de caja del día suma los cobros y coincide con el detalle"
+      ],
+      "verificar": [
+        "python -m pytest -q tests/test_caja.py"
+      ],
+      "ultima_verificacion": {
+        "ok": true,
+        "fecha": "2026-11-24",
+        "resultados": [
+          {
+            "comando": "python -m pytest -q tests/test_caja.py",
+            "ok": true,
+            "detalle": "\"python -m pytest -q tests/test_caja.py\" terminó sin errores."
+          }
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "nombre": "Base de datos PostgreSQL, migraciones y respaldo",
+      "estado": "cerrada",
+      "evidencia": "SQLite, migraciones y respaldo: 63 pruebas pasan, con 10 hilos sobre una base real donde gana uno solo, migraciones en base vacía y con datos, y respaldo y restauración con los mismos datos",
+      "fecha": "2026-11-24",
+      "hecho_cuando": [
+        "El respaldo se restaura y los datos coinciden con los originales",
+        "Las migraciones corren de cero y se pueden repetir sin romper nada"
+      ],
+      "verificar": [
+        "python -m pytest -q tests/test_respaldo.py tests/test_migraciones.py"
+      ],
+      "ultima_verificacion": {
+        "ok": true,
+        "fecha": "2026-11-24",
+        "resultados": [
+          {
+            "comando": "python -m pytest -q tests/test_respaldo.py tests/test_migraciones.py",
+            "ok": true,
+            "detalle": "\"python -m pytest -q tests/test_respaldo.py tests/test_migraciones.py\" terminó sin errores."
+          }
+        ]
+      }
+    }
+  ],
+  "marcas": {
+    "S9": {
+      "evidencia": "El módulo de cobros solo guarda monto y medio de pago (app/cobros/dominio.py) y la tabla cobros de migrations/001_inicial.sql no tiene campos de tarjeta",
+      "fecha": "2026-11-24"
+    },
+    "S4": {
+      "evidencia": "test_un_cliente_no_puede_cancelar_la_cita_de_otro intenta cancelar la cita de otra persona y recibe 403; hay pruebas parecidas para agenda, cobros y caja en tests/test_gestion_de_citas.py",
+      "fecha": "2026-11-24"
+    },
+    "S5": {
+      "evidencia": "Las contraseñas se guardan con scrypt de la biblioteca estándar (hashlib.scrypt, con sal aleatoria) y test_contrasena_no_se_guarda_en_texto comprueba que no queda en texto",
+      "fecha": "2026-11-24"
+    },
+    "S6": {
+      "evidencia": "test_solicitud_con_datos_invalidos_se_rechaza envía cuerpos incompletos y contraseñas cortas y recibe 422; las entradas extremas están en tests/test_endurecimiento.py",
+      "fecha": "2026-11-24"
+    },
+    "S7": {
+      "evidencia": "test_sexto_intento_fallido_queda_bloqueado demuestra que el intento número seis queda bloqueado; el límite por dirección está probado en tests/test_endurecimiento.py",
+      "fecha": "2026-11-24"
+    },
+    "S12": {
+      "evidencia": "test_un_error_inesperado_no_muestra_detalles_internos provoca un error interno y comprueba que la respuesta solo dice error_interno",
+      "fecha": "2026-11-24"
+    },
+    "A5": {
+      "evidencia": "Módulos con capas por carpeta: app/citas/dominio.py, app/cuentas/casos_de_uso.py y app/cobros/repositorio_sqlite.py; el acceso a la base va detrás de interfaces",
+      "fecha": "2026-11-24"
+    },
+    "P3": {
+      "evidencia": "Error: test_rechaza_si_el_barbero_ya_tiene_una_cita_que_se_cruza. Límite: test_permite_una_cita_que_empieza_justo_cuando_termina_otra",
+      "fecha": "2026-11-24"
+    },
+    "P4": {
+      "evidencia": "test_flujo_principal_de_punta_a_punta registra un cliente, inicia sesión, agenda, atiende, cobra y ve el cierre de caja con SQLite",
+      "fecha": "2026-11-24"
+    },
+    "O2": {
+      "evidencia": "El detalle de los errores se registra en app/compartido/api.py y test_un_error_inesperado_se_registra_sin_datos_sensibles (tests/test_registros.py) comprueba que no se guardan cuerpos ni tokens",
+      "fecha": "2026-11-24"
+    },
+    "O3": {
+      "evidencia": "scripts/respaldo.py hace la copia segura y la guía docs/ingeniero/entrega.md indica guardarla en otra máquina distinta a la del servicio",
+      "fecha": "2026-11-24"
+    },
+    "O4": {
+      "evidencia": "test_respaldo_y_restauracion_devuelven_los_mismos_datos respalda, borra el original, restaura y compara los datos",
+      "fecha": "2026-11-24"
+    },
+    "O6": {
+      "evidencia": "test_migraciones_en_una_base_vacia y test_migraciones_con_datos_existentes comprueban la 001 y la 002 en una base vacía y en una con datos",
+      "fecha": "2026-11-24"
+    },
+    "O7": {
+      "evidencia": "La vigilancia de /health y la revisión semanal de los registros están explicadas en la sección Cómo enterarte si algo falla de docs/ingeniero/entrega.md",
+      "fecha": "2026-11-24"
+    },
+    "D2": {
+      "evidencia": "La documentación está al día en README.md y docs/ingeniero/arquitectura.md, actualizados con lo que se construyó",
+      "fecha": "2026-11-24"
+    },
+    "AG1": {
+      "evidencia": "test_dos_hilos_no_pueden_agendar_la_misma_hora lanza 10 hilos a la misma hora sobre un archivo SQLite real y solo uno gana",
+      "fecha": "2026-11-24"
+    },
+    "AG2": {
+      "evidencia": "test_una_hora_se_guarda_en_utc_y_se_muestra_en_zona_del_negocio comprueba el cambio de zona horaria, con un caso a las 23:30 de Santiago",
+      "fecha": "2026-11-24"
+    },
+    "P5": {
+      "evidencia": "Con la skill pruebas-de-la-actividad se rompieron a propósito 16 líneas de app/citas/casos_de_uso.py y app/citas/dominio.py en una copia: las 16 fueron detectadas por alguna prueba y ninguna sobrevivió. Es una muestra de las primeras 16 líneas candidatas, no de todo el código",
+      "fecha": "2026-11-24"
+    },
+    "E4": {
+      "evidencia": "Don Mario respondió: Entendido, publicarlo lo decido y lo hago yo, ustedes no publican nada ni crean cuentas a mi nombre (respuesta simulada para la prueba)",
+      "fecha": "2026-11-24"
+    },
+    "E5": {
+      "evidencia": "Se probó con el servidor real (uvicorn) en un computador local y con datos ficticios: se creó al dueño con el script, se agendó una hora, se rechazó la misma hora con 409, se atendió después de la hora, se cobraron 12000 pesos y el cierre de caja dio 12000; el respaldo salió bien",
+      "fecha": "2026-11-24"
+    },
+    "S11": {
+      "evidencia": "La decisión de Don Mario y la condición de no abrir el sistema al público sin el aviso de privacidad y los términos de su asesor legal están escritas en docs/ingeniero/entrega.md (respuesta simulada para la prueba)",
+      "fecha": "2026-11-24"
+    },
+    "E7": {
+      "evidencia": "Una revisora independiente que no construyó el producto lo probó en dos rondas con SQLite real y dio GO CON RESERVAS: sus ocho hallazgos anteriores quedaron corregidos sin regresiones. Las reservas restantes están documentadas en el README y las dos corregibles se arreglaron después sin una tercera revisión (la anonimización compacta la base y se normalizan las direcciones).",
+      "fecha": "2026-11-24"
+    }
+  },
+  "descartes": {},
+  "verificaciones": {
+    "R1": {
+      "ok": true,
+      "detalle": "brief.md completo (410 palabras).",
+      "fecha": "2026-11-24"
+    },
+    "R3": {
+      "ok": true,
+      "detalle": "Sección \"Fuera de alcance\" de brief.md completa.",
+      "fecha": "2026-11-24"
+    },
+    "I1": {
+      "ok": true,
+      "detalle": "Investigación fechada, con fuentes y tres opciones.",
+      "fecha": "2026-11-24"
+    },
+    "R2": {
+      "ok": true,
+      "detalle": "5 casos de uso con criterios que se pueden comprobar.",
+      "fecha": "2026-11-24"
+    },
+    "A1": {
+      "ok": true,
+      "detalle": "arquitectura.md completo (494 palabras).",
+      "fecha": "2026-11-24"
+    },
+    "A3": {
+      "ok": true,
+      "detalle": "modelo-de-datos.md completo (310 palabras).",
+      "fecha": "2026-11-24"
+    },
+    "S10": {
+      "ok": true,
+      "detalle": "Sección \"Datos personales\" de seguridad.md completa.",
+      "fecha": "2026-11-24"
+    },
+    "R4": {
+      "ok": true,
+      "detalle": "Resumen en lenguaje llano (279 palabras, frases de 12 palabras en promedio).",
+      "fecha": "2026-11-24"
+    },
+    "R5": {
+      "ok": true,
+      "detalle": "Aprobó el plan el 2026-11-24.",
+      "fecha": "2026-11-24"
+    },
+    "I2": {
+      "ok": true,
+      "detalle": "Eligió la opción B (2026-11-24).",
+      "fecha": "2026-11-24"
+    },
+    "I3": {
+      "ok": true,
+      "detalle": "Sección \"Skills y repositorios revisados\" de investigacion.md completa.",
+      "fecha": "2026-11-24"
+    },
+    "A2": {
+      "ok": true,
+      "detalle": "Decisiones registradas en docs/decisiones.",
+      "fecha": "2026-11-24"
+    },
+    "A4": {
+      "ok": true,
+      "detalle": "Migraciones en migrations.",
+      "fecha": "2026-11-24"
+    },
+    "S1": {
+      "ok": true,
+      "detalle": "No se encontraron secretos en los archivos; no se revisó el historial (el proyecto no usa Git).",
+      "fecha": "2026-11-24"
+    },
+    "S2": {
+      "ok": true,
+      "detalle": ".env está en .gitignore y no hay archivos de entorno versionados.",
+      "fecha": "2026-11-24"
+    },
+    "S3": {
+      "ok": true,
+      "detalle": "Existe .env.example.",
+      "fecha": "2026-11-24"
+    },
+    "S8": {
+      "ok": true,
+      "detalle": "\"python -m pip_audit -r requirements.txt\" terminó sin errores.",
+      "fecha": "2026-11-24"
+    },
+    "P1": {
+      "ok": true,
+      "detalle": "223 pruebas con 466 verificaciones en 22 archivos, para 5 casos de uso.",
+      "fecha": "2026-11-24"
+    },
+    "P2": {
+      "ok": true,
+      "detalle": "\"python -m pytest -q\" terminó sin errores.",
+      "fecha": "2026-11-24"
+    },
+    "C1": {
+      "ok": true,
+      "detalle": "\"python -m ruff check .\" terminó sin errores.",
+      "fecha": "2026-11-24"
+    },
+    "C2": {
+      "ok": true,
+      "detalle": "\"python -m compileall -q app\" terminó sin errores.",
+      "fecha": "2026-11-24"
+    },
+    "C3": {
+      "ok": true,
+      "detalle": "Ningún archivo de código pasa de 500 líneas.",
+      "fecha": "2026-11-24"
+    },
+    "C4": {
+      "ok": true,
+      "detalle": "0 pendientes en el código (máximo 5).",
+      "fecha": "2026-11-24"
+    },
+    "C5": {
+      "ok": true,
+      "detalle": "requirements.txt con versiones exactas.",
+      "fecha": "2026-11-24"
+    },
+    "C6": {
+      "ok": true,
+      "detalle": "Flujo de CI en .github/workflows.",
+      "fecha": "2026-11-24"
+    },
+    "O1": {
+      "ok": true,
+      "detalle": "Punto de salud encontrado en app/main.py.",
+      "fecha": "2026-11-24"
+    },
+    "O8": {
+      "ok": true,
+      "detalle": "Las 5 variables de .env.example están explicadas en la guía de entrega.",
+      "fecha": "2026-11-24"
+    },
+    "D1": {
+      "ok": true,
+      "detalle": "README con 1032 palabras que explica cómo ejecutarlo.",
+      "fecha": "2026-11-24"
+    },
+    "D3": {
+      "ok": true,
+      "detalle": "Sección \"Qué recibes\" de entrega.md completa.",
+      "fecha": "2026-11-24"
+    },
+    "E1": {
+      "ok": true,
+      "detalle": "entrega.md completo (1019 palabras).",
+      "fecha": "2026-11-24"
+    },
+    "E2": {
+      "ok": true,
+      "detalle": "Sección \"Costos mensuales estimados\" de entrega.md completa.",
+      "fecha": "2026-11-24"
+    },
+    "E3": {
+      "ok": true,
+      "detalle": "Sección \"Cuentas que debes crear tú\" de entrega.md completa.",
+      "fecha": "2026-11-24"
+    },
+    "E6": {
+      "ok": true,
+      "detalle": "8 etapas cerradas, cada una con su verificación ejecutada.",
+      "fecha": "2026-11-24"
+    },
+    "I4": {
+      "ok": true,
+      "detalle": "La investigación tiene 0 días (máximo 60).",
+      "fecha": "2026-11-24"
+    },
+    "S9": {
+      "ok": true,
+      "detalle": "Cita archivos que existen: app/cobros/dominio.py, migrations/001_inicial.sql.",
+      "fecha": "2026-11-24"
+    },
+    "S4": {
+      "ok": true,
+      "detalle": "Cita 2 prueba(s) que existen: test_un_cliente_no_puede_cancelar_la_cita_de_otro, tests/test_gestion_de_citas.py.",
+      "fecha": "2026-11-24"
+    },
+    "S5": {
+      "ok": true,
+      "detalle": "scrypt está en las dependencias o en el código. Cita 1 prueba(s) que existen: test_contrasena_no_se_guarda_en_texto.",
+      "fecha": "2026-11-24"
+    },
+    "S6": {
+      "ok": true,
+      "detalle": "Cita 2 prueba(s) que existen: test_solicitud_con_datos_invalidos_se_rechaza, tests/test_endurecimiento.py.",
+      "fecha": "2026-11-24"
+    },
+    "S7": {
+      "ok": true,
+      "detalle": "Cita 2 prueba(s) que existen: test_sexto_intento_fallido_queda_bloqueado, tests/test_endurecimiento.py.",
+      "fecha": "2026-11-24"
+    },
+    "S12": {
+      "ok": true,
+      "detalle": "Cita 1 prueba(s) que existen: test_un_error_inesperado_no_muestra_detalles_internos.",
+      "fecha": "2026-11-24"
+    },
+    "A5": {
+      "ok": true,
+      "detalle": "Cita archivos que existen: app/citas/dominio.py, app/cobros/repositorio_sqlite.py, app/cuentas/casos_de_uso.py.",
+      "fecha": "2026-11-24"
+    },
+    "P3": {
+      "ok": true,
+      "detalle": "Cita 2 prueba(s) que existen: test_permite_una_cita_que_empieza_justo_cuando_termina_otra, test_rechaza_si_el_barbero_ya_tiene_una_cita_que_se_cruza.",
+      "fecha": "2026-11-24"
+    },
+    "P4": {
+      "ok": true,
+      "detalle": "Cita 1 prueba(s) que existen: test_flujo_principal_de_punta_a_punta.",
+      "fecha": "2026-11-24"
+    },
+    "O2": {
+      "ok": true,
+      "detalle": "Cita archivos que existen: app/compartido/api.py, tests/test_registros.py.",
+      "fecha": "2026-11-24"
+    },
+    "O3": {
+      "ok": true,
+      "detalle": "Cita archivos que existen: docs/ingeniero/entrega.md, scripts/respaldo.py.",
+      "fecha": "2026-11-24"
+    },
+    "O4": {
+      "ok": true,
+      "detalle": "Cita 1 prueba(s) que existen: test_respaldo_y_restauracion_devuelven_los_mismos_datos.",
+      "fecha": "2026-11-24"
+    },
+    "O6": {
+      "ok": true,
+      "detalle": "Cita 2 prueba(s) que existen: test_migraciones_con_datos_existentes, test_migraciones_en_una_base_vacia.",
+      "fecha": "2026-11-24"
+    },
+    "O7": {
+      "ok": true,
+      "detalle": "Cita archivos que existen: docs/ingeniero/entrega.md.",
+      "fecha": "2026-11-24"
+    },
+    "D2": {
+      "ok": true,
+      "detalle": "Cita archivos que existen: README.md, docs/ingeniero/arquitectura.md.",
+      "fecha": "2026-11-24"
+    },
+    "AG1": {
+      "ok": true,
+      "detalle": "Cita 1 prueba(s) que existen: test_dos_hilos_no_pueden_agendar_la_misma_hora.",
+      "fecha": "2026-11-24"
+    },
+    "AG2": {
+      "ok": true,
+      "detalle": "Cita 1 prueba(s) que existen: test_una_hora_se_guarda_en_utc_y_se_muestra_en_zona_del_negocio.",
+      "fecha": "2026-11-24"
+    },
+    "S11": {
+      "ok": true,
+      "detalle": "Cita archivos que existen: docs/ingeniero/entrega.md.",
+      "fecha": "2026-11-24"
+    },
+    "R6": {
+      "ok": true,
+      "detalle": "No quedan dudas abiertas.",
+      "fecha": "2026-11-24"
+    },
+    "R7": {
+      "ok": true,
+      "detalle": "Pre-mortem con 4 riesgos que tienen respuesta y los 8 ángulos revisados.",
+      "fecha": "2026-11-24"
+    },
+    "R8": {
+      "ok": true,
+      "detalle": "Los 5 casos de uso apuntan a pruebas que existen.",
+      "fecha": "2026-11-24"
+    }
+  },
+  "historial": [
+    {
+      "fecha": "2026-11-24",
+      "accion": "iniciar",
+      "detalle": "Proyecto \"Barbería Don Mario\", perfil agenda."
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "datos",
+      "detalle": "pagos=sí, datos-personales=sí, cuentas=sí, multiusuario=sí, base-de-datos=sí"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "avanzar",
+      "detalle": "investigacion"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "avanzar",
+      "detalle": "eleccion"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "elegir",
+      "detalle": "B: El sobrino que lo mantendrá sabe Python"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "avanzar",
+      "detalle": "plan"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "etapa-agregar",
+      "detalle": "1 Agendar una cita"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "etapa-agregar",
+      "detalle": "2 Cuentas y roles"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "etapa-agregar",
+      "detalle": "3 Cancelar y mover una cita"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "etapa-agregar",
+      "detalle": "4 Agenda del día del barbero"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "etapa-agregar",
+      "detalle": "5 Registrar cobros"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "etapa-agregar",
+      "detalle": "6 Cierre de caja del día"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "etapa-agregar",
+      "detalle": "7 Base de datos PostgreSQL, migraciones y respaldo"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "avanzar",
+      "detalle": "resumen"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "avanzar",
+      "detalle": "aprobado: Sí, está claro. Empecemos, y que lo de WhatsApp quede para después."
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "avanzar",
+      "detalle": "construccion"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "comandos",
+      "detalle": "pruebas: python -m pytest -q, lint: python -m ruff check ., build: python -m compileall -q app, auditoria: python -m pip_audit -r requirements.txt"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "etapa-cerrar",
+      "detalle": "0 Esqueleto"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "etapa-cerrar",
+      "detalle": "1 Agendar una cita"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "marcar",
+      "detalle": "S9"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "retroceder",
+      "detalle": "plan: Cambio de tecnología: SQLite en vez de PostgreSQL por el volumen y el costo"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "avanzar",
+      "detalle": "resumen"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "avanzar",
+      "detalle": "aprobado: Sí, me parece bien, así sale más barato"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "avanzar",
+      "detalle": "construccion"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "comandos",
+      "detalle": "pruebas: python -m pytest -q, lint: python -m ruff check ., build: python -m compileall -q app, auditoria: python -m pip_audit -r requirements.txt"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "etapa-cerrar",
+      "detalle": "2 Cuentas y roles"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "etapa-cerrar",
+      "detalle": "3 Cancelar y mover una cita"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "etapa-cerrar",
+      "detalle": "4 Agenda del día del barbero"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "etapa-cerrar",
+      "detalle": "5 Registrar cobros"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "etapa-cerrar",
+      "detalle": "6 Cierre de caja del día"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "etapa-cerrar",
+      "detalle": "7 Base de datos PostgreSQL, migraciones y respaldo"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "avanzar",
+      "detalle": "salida"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "marcar",
+      "detalle": "S4"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "marcar",
+      "detalle": "S5"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "marcar",
+      "detalle": "S6"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "marcar",
+      "detalle": "S7"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "marcar",
+      "detalle": "S9"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "marcar",
+      "detalle": "S12"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "marcar",
+      "detalle": "A5"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "marcar",
+      "detalle": "P3"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "marcar",
+      "detalle": "P4"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "marcar",
+      "detalle": "O2"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "marcar",
+      "detalle": "O3"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "marcar",
+      "detalle": "O4"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "marcar",
+      "detalle": "O6"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "marcar",
+      "detalle": "O7"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "marcar",
+      "detalle": "D2"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "marcar",
+      "detalle": "AG1"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "marcar",
+      "detalle": "AG2"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "marcar",
+      "detalle": "P5"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "marcar",
+      "detalle": "E4"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "marcar",
+      "detalle": "E5"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "marcar",
+      "detalle": "S11"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "marcar",
+      "detalle": "E7"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "etapa-contrato",
+      "detalle": "0 Esqueleto"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "etapa-contrato",
+      "detalle": "1 Agendar una cita"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "etapa-contrato",
+      "detalle": "2 Cuentas y roles"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "etapa-contrato",
+      "detalle": "3 Cancelar y mover una cita"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "etapa-contrato",
+      "detalle": "4 Agenda del día del barbero"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "etapa-contrato",
+      "detalle": "5 Registrar cobros"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "etapa-contrato",
+      "detalle": "6 Cierre de caja del día"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "etapa-contrato",
+      "detalle": "7 Base de datos PostgreSQL, migraciones y respaldo"
+    }
+  ],
+  "puntajes": [
+    {
+      "fecha": "2026-11-24",
+      "puntaje": 59,
+      "criticos_pendientes": 7,
+      "comprobado": 71
+    },
+    {
+      "fecha": "2026-11-24",
+      "puntaje": 60,
+      "criticos_pendientes": 7,
+      "comprobado": 73
+    },
+    {
+      "fecha": "2026-11-24",
+      "puntaje": 98,
+      "criticos_pendientes": 0,
+      "comprobado": 73
+    },
+    {
+      "fecha": "2026-11-24",
+      "puntaje": 100,
+      "criticos_pendientes": 0,
+      "comprobado": 73
+    },
+    {
+      "fecha": "2026-11-24",
+      "puntaje": 100,
+      "criticos_pendientes": 0,
+      "comprobado": 79
+    }
+  ]
+}

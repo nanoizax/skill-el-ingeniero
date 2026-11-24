@@ -1,0 +1,14 @@
+{
+  "organizacion": "https://github.com/nanoizax",
+  "skills": [
+    {"nombre": "arquitectura-backend", "repo": "skill-arquitectura-backend", "etapa": "plan", "para": "Estructura del código del servidor: capas, módulos, errores y contrato de la API."},
+    {"nombre": "decisiones-de-arquitectura", "repo": "skill-decisiones-de-arquitectura", "etapa": "plan", "para": "Una nota corta por cada decisión técnica importante."},
+    {"nombre": "pruebas-de-la-actividad", "repo": "skill-pruebas-de-la-actividad", "etapa": "construccion", "para": "Pruebas de cada etapa, comprobar que no se rompió lo anterior y veredicto."},
+    {"nombre": "commits-limpios", "repo": "skill-commits-limpios", "etapa": "construccion", "para": "Commits con título claro y autor persona."},
+    {"nombre": "documentacion-viva", "repo": "skill-documentacion-viva", "etapa": "construccion", "para": "La memoria del proyecto: documentación al día para retomar sin releer el código."},
+    {"nombre": "qa", "repo": "skill-qa", "etapa": "salida", "para": "QA independiente y veredicto de salida GO o NO-GO."},
+    {"nombre": "documentacion", "repo": "skill-documentacion", "etapa": "salida", "para": "Manual de usuario y documentación técnica completa."},
+    {"nombre": "limpieza-de-texto", "repo": "skill-limpieza-de-texto", "etapa": "cualquiera", "para": "Limpiar el texto que produjo un modelo antes de entregarlo."},
+    {"nombre": "repaso-tecnico", "repo": "skill-repaso-tecnico", "etapa": "construccion", "para": "Repaso corto de lo que se usó y dónde puede fallar."}
+  ]
+}

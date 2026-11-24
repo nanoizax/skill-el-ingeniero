@@ -1,0 +1,56 @@
+{
+  "puntaje": 29,
+  "total_posible": 117,
+  "comprobado_por_el_script": 34,
+  "declarado_con_referencia_verificada": 0,
+  "declarado_sin_verificar": 0,
+  "declarado_con_evidencia": 0,
+  "pendientes": 40,
+  "criticos_pendientes": [
+    {
+      "id": "S2",
+      "titulo": "El archivo .env está fuera de Git",
+      "detalle": "El archivo .gitignore no incluye .env."
+    },
+    {
+      "id": "P2",
+      "titulo": "Todas las pruebas pasan",
+      "detalle": "No hay comando configurado para \"pruebas\". Usa: comandos --pruebas \"<comando>\"."
+    },
+    {
+      "id": "O3",
+      "titulo": "Respaldo diario de la base de datos en OTRA máquina",
+      "detalle": "Falta evidencia: Archivo del script de respaldo y dónde queda la copia (otra máquina, no la misma que los datos)."
+    },
+    {
+      "id": "O4",
+      "titulo": "Restauración del respaldo probada de verdad",
+      "detalle": "Falta evidencia: Nombre de la prueba que respalda, borra y restaura, y qué compara al final."
+    },
+    {
+      "id": "E1",
+      "titulo": "Guía de entrega completa para la persona",
+      "detalle": "entrega.md todavía tiene huecos [[...]] sin llenar."
+    },
+    {
+      "id": "E4",
+      "titulo": "La persona entiende que el envío a producción lo decide y lo hace ella",
+      "detalle": "Falta evidencia: Sus propias palabras al confirmar que entendió que el envío es decisión suya."
+    }
+  ],
+  "descartados": [],
+  "por_categoria": {
+    "Requisitos": "13 de 13",
+    "Investigación": "7 de 7",
+    "Arquitectura": "6 de 10",
+    "Seguridad": "6 de 21",
+    "Pruebas": "0 de 11",
+    "Calidad": "2 de 9",
+    "Operación": "0 de 15",
+    "Documentación": "0 de 6",
+    "Entrega": "0 de 17",
+    "Perfil bot": "0 de 8"
+  },
+  "veredicto": "no_listo",
+  "titulo_veredicto": "NO ESTÁ LISTO PARA ENVIAR"
+}

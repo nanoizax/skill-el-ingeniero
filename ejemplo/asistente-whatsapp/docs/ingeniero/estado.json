@@ -1,0 +1,384 @@
+{
+  "version": 1,
+  "nombre": "Asistente de WhatsApp del consultorio",
+  "perfil": "bot",
+  "creado": "2026-11-24",
+  "etapa": "construccion",
+  "banderas": {
+    "pagos": false,
+    "datos-personales": true,
+    "cuentas": false,
+    "multiusuario": false,
+    "whatsapp": true,
+    "movil": false,
+    "base-de-datos": true,
+    "archivos": false,
+    "ia": true
+  },
+  "comandos": {
+    "pruebas": null,
+    "lint": null,
+    "build": null,
+    "auditoria": null
+  },
+  "eleccion": {
+    "opcion": "A",
+    "porque": "Quiero WhatsApp de verdad y que los datos queden conmigo",
+    "fecha": "2026-11-24"
+  },
+  "aprobacion": {
+    "evidencia": "Sí, apruébenlo. Y que nunca invente cosas de salud.",
+    "fecha": "2026-11-24"
+  },
+  "etapas": [
+    {
+      "id": 0,
+      "nombre": "Esqueleto",
+      "estado": "pendiente",
+      "evidencia": null,
+      "fecha": null,
+      "hecho_cuando": [
+        "La prueba de salud responde ok y el linter no encuentra errores"
+      ],
+      "verificar": [
+        "python -m pytest -q tests/test_salud.py",
+        "python -m ruff check ."
+      ],
+      "ultima_verificacion": null
+    },
+    {
+      "id": 1,
+      "nombre": "Responder preguntas frecuentes",
+      "estado": "pendiente",
+      "evidencia": null,
+      "fecha": null,
+      "hecho_cuando": [
+        "El asistente contesta el horario y el precio desde el archivo de preguntas",
+        "El asistente responde que no sabe cuando la pregunta no está en el archivo"
+      ],
+      "verificar": [
+        "python -m pytest -q tests/test_preguntas_frecuentes.py"
+      ],
+      "ultima_verificacion": null
+    },
+    {
+      "id": 2,
+      "nombre": "Agendar una hora",
+      "estado": "pendiente",
+      "evidencia": null,
+      "fecha": null,
+      "hecho_cuando": [
+        "El paciente recibe la confirmación de una hora libre con su fecha y su profesional",
+        "El asistente rechaza una hora ocupada y ofrece la siguiente libre"
+      ],
+      "verificar": [
+        "python -m pytest -q tests/test_agendar_hora.py"
+      ],
+      "ultima_verificacion": null
+    },
+    {
+      "id": 3,
+      "nombre": "Pasar la conversación a la secretaria",
+      "estado": "pendiente",
+      "evidencia": null,
+      "fecha": null,
+      "hecho_cuando": [
+        "Una frase de urgencia corta al asistente y avisa a la secretaria de inmediato",
+        "La palabra clave de la secretaria le devuelve la conversación a una persona"
+      ],
+      "verificar": [
+        "python -m pytest -q tests/test_traspaso.py"
+      ],
+      "ultima_verificacion": null
+    },
+    {
+      "id": 4,
+      "nombre": "Registro y borrado de conversaciones",
+      "estado": "pendiente",
+      "evidencia": null,
+      "fecha": null,
+      "hecho_cuando": [
+        "Cada conversación queda guardada con el mínimo de datos del paciente",
+        "El paciente puede pedir el borrado y no queda rastro en el registro"
+      ],
+      "verificar": [
+        "python -m pytest -q tests/test_registro.py"
+      ],
+      "ultima_verificacion": null
+    }
+  ],
+  "marcas": {},
+  "descartes": {},
+  "verificaciones": {
+    "R1": {
+      "ok": true,
+      "detalle": "brief.md completo (351 palabras).",
+      "fecha": "2026-11-24"
+    },
+    "R3": {
+      "ok": true,
+      "detalle": "Sección \"Fuera de alcance\" de brief.md completa.",
+      "fecha": "2026-11-24"
+    },
+    "I1": {
+      "ok": true,
+      "detalle": "Investigación fechada, con fuentes y tres opciones.",
+      "fecha": "2026-11-24"
+    },
+    "R2": {
+      "ok": true,
+      "detalle": "4 casos de uso con criterio de aceptación.",
+      "fecha": "2026-11-24"
+    },
+    "A1": {
+      "ok": true,
+      "detalle": "arquitectura.md completo (360 palabras).",
+      "fecha": "2026-11-24"
+    },
+    "A3": {
+      "ok": true,
+      "detalle": "modelo-de-datos.md completo (217 palabras).",
+      "fecha": "2026-11-24"
+    },
+    "S10": {
+      "ok": true,
+      "detalle": "Sección \"Datos personales\" de seguridad.md completa.",
+      "fecha": "2026-11-24"
+    },
+    "R4": {
+      "ok": true,
+      "detalle": "Resumen en lenguaje llano (288 palabras, frases de 13 palabras en promedio).",
+      "fecha": "2026-11-24"
+    },
+    "R5": {
+      "ok": true,
+      "detalle": "Aprobó el plan el 2026-11-24.",
+      "fecha": "2026-11-24"
+    },
+    "I2": {
+      "ok": true,
+      "detalle": "Eligió la opción A (2026-11-24).",
+      "fecha": "2026-11-24"
+    },
+    "I3": {
+      "ok": true,
+      "detalle": "Sección \"Skills y repositorios revisados\" de investigacion.md completa.",
+      "fecha": "2026-11-24"
+    },
+    "A2": {
+      "ok": true,
+      "detalle": "Decisiones registradas en docs/decisiones.",
+      "fecha": "2026-11-24"
+    },
+    "A4": {
+      "ok": false,
+      "detalle": "No se encontró una carpeta de migraciones con archivos.",
+      "fecha": "2026-11-24"
+    },
+    "S1": {
+      "ok": true,
+      "detalle": "No se encontraron secretos en los archivos; no se revisó el historial (el proyecto no usa Git).",
+      "fecha": "2026-11-24"
+    },
+    "S2": {
+      "ok": false,
+      "detalle": "El archivo .gitignore no incluye .env.",
+      "fecha": "2026-11-24"
+    },
+    "S3": {
+      "ok": false,
+      "detalle": "Falta el archivo .env.example con los nombres de las variables.",
+      "fecha": "2026-11-24"
+    },
+    "S8": {
+      "ok": false,
+      "detalle": "No hay comando configurado para \"auditoria\". Usa: comandos --auditoria \"<comando>\".",
+      "fecha": "2026-11-24"
+    },
+    "P1": {
+      "ok": false,
+      "detalle": "No se encontraron archivos de pruebas.",
+      "fecha": "2026-11-24"
+    },
+    "P2": {
+      "ok": false,
+      "detalle": "No hay comando configurado para \"pruebas\". Usa: comandos --pruebas \"<comando>\".",
+      "fecha": "2026-11-24"
+    },
+    "C1": {
+      "ok": false,
+      "detalle": "No hay comando configurado para \"lint\". Usa: comandos --lint \"<comando>\".",
+      "fecha": "2026-11-24"
+    },
+    "C2": {
+      "ok": false,
+      "detalle": "No hay comando configurado para \"build\". Usa: comandos --build \"<comando>\".",
+      "fecha": "2026-11-24"
+    },
+    "C3": {
+      "ok": true,
+      "detalle": "Ningún archivo de código pasa de 500 líneas.",
+      "fecha": "2026-11-24"
+    },
+    "C4": {
+      "ok": true,
+      "detalle": "0 pendientes en el código (máximo 5).",
+      "fecha": "2026-11-24"
+    },
+    "C5": {
+      "ok": false,
+      "detalle": "No se encontró un archivo de dependencias (package.json, pyproject.toml, requirements.txt...).",
+      "fecha": "2026-11-24"
+    },
+    "C6": {
+      "ok": false,
+      "detalle": "No hay una automatización de CI (por ejemplo .github/workflows).",
+      "fecha": "2026-11-24"
+    },
+    "O1": {
+      "ok": false,
+      "detalle": "No se encontró un punto de salud (por ejemplo GET /health).",
+      "fecha": "2026-11-24"
+    },
+    "O8": {
+      "ok": false,
+      "detalle": "Falta .env.example: no hay lista de variables que documentar.",
+      "fecha": "2026-11-24"
+    },
+    "D1": {
+      "ok": false,
+      "detalle": "Falta el archivo README.md.",
+      "fecha": "2026-11-24"
+    },
+    "D3": {
+      "ok": false,
+      "detalle": "En entrega.md, la sección \"Qué recibes\" todavía tiene huecos [[...]] sin llenar.",
+      "fecha": "2026-11-24"
+    },
+    "E1": {
+      "ok": false,
+      "detalle": "entrega.md todavía tiene huecos [[...]] sin llenar.",
+      "fecha": "2026-11-24"
+    },
+    "E2": {
+      "ok": false,
+      "detalle": "En entrega.md, la sección \"Costos mensuales estimados\" todavía tiene huecos [[...]] sin llenar.",
+      "fecha": "2026-11-24"
+    },
+    "E3": {
+      "ok": false,
+      "detalle": "En entrega.md, la sección \"Cuentas que debes crear tú\" todavía tiene huecos [[...]] sin llenar.",
+      "fecha": "2026-11-24"
+    },
+    "E6": {
+      "ok": false,
+      "detalle": "Etapas abiertas: 0 (Esqueleto), 1 (Responder preguntas frecuentes), 2 (Agendar una hora), 3 (Pasar la conversación a la secretaria), 4 (Registro y borrado de conversaciones).",
+      "fecha": "2026-11-24"
+    },
+    "I4": {
+      "ok": true,
+      "detalle": "La investigación tiene 0 días (máximo 60).",
+      "fecha": "2026-11-24"
+    }
+  },
+  "historial": [
+    {
+      "fecha": "2026-11-24",
+      "accion": "iniciar",
+      "detalle": "Proyecto \"Asistente de WhatsApp del consultorio\", perfil bot."
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "datos",
+      "detalle": "datos-personales=sí, whatsapp=sí, base-de-datos=sí, ia=sí"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "avanzar",
+      "detalle": "investigacion"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "avanzar",
+      "detalle": "eleccion"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "elegir",
+      "detalle": "A: Quiero WhatsApp de verdad y que los datos queden conmigo"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "avanzar",
+      "detalle": "plan"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "etapa-agregar",
+      "detalle": "1 Responder preguntas frecuentes"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "etapa-agregar",
+      "detalle": "2 Agendar una hora"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "etapa-agregar",
+      "detalle": "3 Pasar la conversación a la secretaria"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "etapa-agregar",
+      "detalle": "4 Registro y borrado de conversaciones"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "avanzar",
+      "detalle": "resumen"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "avanzar",
+      "detalle": "aprobado: Sí, apruébenlo. Y que nunca invente cosas de salud."
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "avanzar",
+      "detalle": "construccion"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "etapa-contrato",
+      "detalle": "0 Esqueleto"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "etapa-contrato",
+      "detalle": "1 Responder preguntas frecuentes"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "etapa-contrato",
+      "detalle": "2 Agendar una hora"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "etapa-contrato",
+      "detalle": "3 Pasar la conversación a la secretaria"
+    },
+    {
+      "fecha": "2026-11-24",
+      "accion": "etapa-contrato",
+      "detalle": "4 Registro y borrado de conversaciones"
+    }
+  ],
+  "puntajes": [
+    {
+      "fecha": "2026-11-24",
+      "puntaje": 29,
+      "criticos_pendientes": 6,
+      "comprobado": 34
+    }
+  ]
+}

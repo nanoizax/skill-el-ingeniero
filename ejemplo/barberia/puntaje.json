@@ -1,0 +1,25 @@
+{
+  "puntaje": 100,
+  "total_posible": 128,
+  "comprobado_por_el_script": 79,
+  "declarado_con_referencia_verificada": 40,
+  "declarado_sin_verificar": 9,
+  "declarado_con_evidencia": 49,
+  "pendientes": 0,
+  "criticos_pendientes": [],
+  "descartados": [],
+  "por_categoria": {
+    "Requisitos": "19 de 19",
+    "Investigación": "7 de 7",
+    "Arquitectura": "10 de 10",
+    "Seguridad": "28 de 28",
+    "Pruebas": "11 de 11",
+    "Calidad": "9 de 9",
+    "Operación": "15 de 15",
+    "Documentación": "6 de 6",
+    "Entrega": "18 de 18",
+    "Perfil agenda": "5 de 5"
+  },
+  "veredicto": "listo",
+  "titulo_veredicto": "LISTO PARA ENVIAR"
+}
